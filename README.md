@@ -1,4 +1,4 @@
-# AstroGods Linux Releases
+# AstroGods Linux releases
 
 Binary releases of [AstroGods](https://astrogods.it) for Linux.
 
