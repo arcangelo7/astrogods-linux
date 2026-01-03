@@ -4,7 +4,7 @@ Binary releases of [AstroGods](https://astrogods.it) for Linux.
 
 AstroGods is a modern, beautifully designed Astrology app focused on self-knowledge. It provides personalized birth chart interpretations, synastry analysis for relationships, and transit readings.
 
-[Watch the demo video](showcase.mp4)
+https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 
 <p align="center">
   <img src="screenshots/1000x700/homepage_dark.png" width="45%" alt="Homepage" />
