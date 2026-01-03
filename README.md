@@ -17,13 +17,9 @@ https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 
 ## Installation
 
-### Flatpak (recommended)
+## Flatpak
 
-AstroGods is available on [Flathub](https://flathub.org/apps/it.astrogods.app):
-
-```bash
-flatpak install flathub it.astrogods.app
-```
+AstroGods has been submitted to [Flathub](https://flathub.org) and is pending review. You can track the submission progress in [PR #7474](https://github.com/flathub/flathub/pull/7474).
 
 ### Manual installation
 
@@ -31,15 +27,9 @@ Download the latest `linux-x64-*.tar.gz` from [Releases](https://github.com/arca
 
 ```bash
 tar -xzf linux-x64-*.tar.gz
-cd linux-x64-*/
+cd linux-x64-*/bundle
 ./astrogods
 ```
-
-## Requirements
-
-- Linux x86_64
-- GTK 3.0
-- OpenGL support
 
 ## License
 
