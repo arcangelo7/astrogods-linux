@@ -36,7 +36,7 @@ jobs:
         run: dbus-run-session flatpak run --command=flathub-build org.flatpak.Builder flatpak/it.astrogods.AstroGods.json
 
       - name: Lint manifest
-        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/it.astrogods.AstroGods.json | jq .
+        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/it.astrogods.AstroGods.json
 
       - name: Lint repo
-        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo | jq .
+        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
