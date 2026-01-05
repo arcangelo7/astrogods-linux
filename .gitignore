@@ -8,5 +8,4 @@ build/
 .idea/
 .vscode/
 *.iml
-.env*
 .flatpak-builder/
