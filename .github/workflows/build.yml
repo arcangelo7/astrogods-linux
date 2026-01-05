@@ -6,18 +6,31 @@ on:
       - '*.*.*'
 
 jobs:
-  build-linux-x64:
-    runs-on: ubuntu-latest
+  build-linux:
+    strategy:
+      matrix:
+        include:
+          - arch: x64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
         with:
-          flutter-version: '3.38.5'
-          channel: 'stable'
-          cache: true
+          path: flutter
+          key: flutter-linux-${{ matrix.arch }}-3.38.5
+
+      - name: Setup Flutter
+        run: |
+          if [ ! -d "flutter" ]; then
+            git clone --depth 1 --branch 3.38.5 https://github.com/flutter/flutter.git flutter
+          fi
+          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
 
       - name: Create .env.flutter.prod
         run: |
@@ -28,76 +41,28 @@ jobs:
           GOOGLE_OAUTH_CLIENT_SECRET=${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
           EOF
 
-      - name: Install Linux build dependencies
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
 
-      - name: Build Linux release
+      - name: Build and package
         run: |
           flutter pub get
           flutter build linux --release
-
-      - name: Package Linux build
-        run: |
-          cd build/linux/x64/release
-          mv bundle linux-x64-${{ github.ref_name }}
-          tar -czf ../../../../linux-x64-${{ github.ref_name }}.tar.gz linux-x64-${{ github.ref_name }}
+          cd build/linux/${{ matrix.arch }}/release
+          mv bundle linux-${{ matrix.arch }}-${{ github.ref_name }}
+          tar -czf ../../../../linux-${{ matrix.arch }}-${{ github.ref_name }}.tar.gz linux-${{ matrix.arch }}-${{ github.ref_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: linux-x64-build
-          path: linux-x64-${{ github.ref_name }}.tar.gz
-
-  build-linux-arm64:
-    runs-on: ubuntu-24.04-arm
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.38.5'
-          channel: 'stable'
-          cache: true
-
-      - name: Create .env.flutter.prod
-        run: |
-          cat > .env.flutter.prod << EOF
-          API_BASE_URL=${{ secrets.API_BASE_URL }}
-          APP_VERSION=${{ github.ref_name }}
-          GOOGLE_OAUTH_CLIENT_ID=${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
-          GOOGLE_OAUTH_CLIENT_SECRET=${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
-          EOF
-
-      - name: Install Linux build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
-
-      - name: Build Linux release
-        run: |
-          flutter pub get
-          flutter build linux --release
-
-      - name: Package Linux build
-        run: |
-          cd build/linux/arm64/release
-          mv bundle linux-arm64-${{ github.ref_name }}
-          tar -czf ../../../../linux-arm64-${{ github.ref_name }}.tar.gz linux-arm64-${{ github.ref_name }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-arm64-build
-          path: linux-arm64-${{ github.ref_name }}.tar.gz
+          name: linux-${{ matrix.arch }}-build
+          path: linux-${{ matrix.arch }}-${{ github.ref_name }}.tar.gz
 
   release:
-    needs: [build-linux-x64, build-linux-arm64]
+    needs: build-linux
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
@@ -106,21 +71,18 @@ jobs:
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
-        with:
-          path: artifacts
 
-      - name: Move artifacts to root
+      - name: Prepare artifacts
         run: |
-          mv artifacts/linux-x64-build/linux-x64-${{ github.ref_name }}.tar.gz .
-          mv artifacts/linux-arm64-build/linux-arm64-${{ github.ref_name }}.tar.gz .
+          mv linux-x64-build/linux-x64-${{ github.ref_name }}.tar.gz .
+          mv linux-arm64-build/linux-arm64-${{ github.ref_name }}.tar.gz .
 
-      - name: Update Flatpak manifest with checksums
+      - name: Update Flatpak manifest
         run: |
           VERSION=${{ github.ref_name }}
           CHECKSUM_X64=$(sha256sum linux-x64-${VERSION}.tar.gz | cut -d' ' -f1)
           CHECKSUM_ARM64=$(sha256sum linux-arm64-${VERSION}.tar.gz | cut -d' ' -f1)
           URL_BASE="https://github.com/arcangelo7/astrogods-app/releases/download/${VERSION}"
-
           jq --arg url_x64 "${URL_BASE}/linux-x64-${VERSION}.tar.gz" \
              --arg sha_x64 "${CHECKSUM_X64}" \
              --arg url_arm64 "${URL_BASE}/linux-arm64-${VERSION}.tar.gz" \
@@ -132,7 +94,7 @@ jobs:
              flatpak/it.astrogods.AstroGods.json > flatpak/tmp.json
           mv flatpak/tmp.json flatpak/it.astrogods.AstroGods.json
 
-      - name: Commit updated manifest
+      - name: Commit manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -166,25 +128,18 @@ jobs:
         with:
           ref: main
 
-      - name: Install Flatpak
+      - name: Setup Flatpak
         run: |
           sudo apt-get update
           sudo apt-get install -y flatpak
+          flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          flatpak install -y --user flathub org.flatpak.Builder
 
-      - name: Add Flathub remote
-        run: flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-      - name: Install Flatpak Builder
-        run: flatpak install -y --user flathub org.flatpak.Builder
-
-      - name: Build Flatpak (${{ matrix.arch }})
-        run: |
-          flatpak run --command=flathub-build org.flatpak.Builder flatpak/it.astrogods.AstroGods.json
+      - name: Build Flatpak
+        run: flatpak run --command=flathub-build org.flatpak.Builder flatpak/it.astrogods.AstroGods.json
 
       - name: Lint manifest
-        run: |
-          flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/it.astrogods.AstroGods.json
+        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/it.astrogods.AstroGods.json
 
       - name: Lint repo
-        run: |
-          flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
+        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
