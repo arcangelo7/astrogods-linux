@@ -24,34 +24,24 @@ https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 
 ## Installation
 
+This repository was created to facilitate publication on Flathub and currently provides pre-built binaries for Linux only. Since this is a Flutter project, the source code can theoretically be compiled for other platforms (Android, iOS, macOS, Windows, Web).
+
 ### Flatpak
 
 AstroGods has been submitted to [Flathub](https://flathub.org) and is pending review. Track the progress in [PR #7474](https://github.com/flathub/flathub/pull/7474).
 
 ### Pre-built binaries
 
-Download the latest release from [Releases](https://github.com/arcangelo7/astrogods-app/releases):
+Download the latest release for your architecture from [Releases](https://github.com/arcangelo7/astrogods-app/releases):
+
+- `linux-x64-*.tar.gz` for Intel/AMD processors
+- `linux-arm64-*.tar.gz` for ARM processors
 
 ```bash
-tar -xzf linux-x64-*.tar.gz
-cd linux-x64-*
+tar -xzf linux-*.tar.gz
+cd linux-*/
 ./astrogods
 ```
-
-ARM64 builds are also available.
-
-## Building from source
-
-Requirements:
-- Flutter 3.38
-- Linux build dependencies: `clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev`
-
-```bash
-flutter pub get
-flutter build linux --release
-```
-
-The built application will be in `build/linux/x64/release/bundle/`.
 
 ## License
 
