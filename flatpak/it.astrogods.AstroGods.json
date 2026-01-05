@@ -31,7 +31,7 @@
         {
           "type": "archive",
           "only-arches": ["x86_64"],
-          "url": "https://github.com/arcangelo7/astrogods-app/releases/download/4.6.2/linux-x64-4.6.2.tar.gz",
+          "url": "https://github.com/arcangelo7/astrogods-app/releases/download/4.6.3/linux-x64-4.6.3.tar.gz",
           "sha256": "c56d8124156e017fc0010a275ff586dbfbe3fae2e35b5e3911b2ff4639ab03fe"
         },
         {
