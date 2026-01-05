@@ -1,6 +1,5 @@
 import 'package:google_sign_in_all_platforms/google_sign_in_all_platforms.dart';
 
-import '../config/environment.dart';
 import '../models/google_user_data.dart';
 
 class GoogleSignInDesktopService {
@@ -11,26 +10,27 @@ class GoogleSignInDesktopService {
 
   GoogleSignIn? _googleSignIn;
 
-  GoogleSignIn _getGoogleSignIn() {
-    final clientSecret = Environment.googleOAuthClientSecret;
-    if (clientSecret == null) {
-      throw Exception('GOOGLE_OAUTH_CLIENT_SECRET must be set for desktop');
-    }
-
-    _googleSignIn ??= GoogleSignIn(
+  Future<void> initialize(String clientId, String clientSecret) async {
+    _googleSignIn = GoogleSignIn(
       params: GoogleSignInParams(
-        clientId: Environment.googleOAuthClientId,
+        clientId: clientId,
         clientSecret: clientSecret,
         scopes: ['openid', 'profile', 'email'],
         redirectPort: 9876,
       ),
     );
+  }
+
+  GoogleSignIn _getGoogleSignIn() {
+    if (_googleSignIn == null) {
+      throw Exception(
+          'GoogleSignInDesktopService not initialized. Call initialize() first.');
+    }
     return _googleSignIn!;
   }
 
   Future<GoogleUserData?> signIn() async {
     final googleSignIn = _getGoogleSignIn();
-    // Sign out first to clear any cached expired tokens
     await googleSignIn.signOut();
     final credentials = await googleSignIn.signIn();
 

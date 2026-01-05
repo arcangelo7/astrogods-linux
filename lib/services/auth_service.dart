@@ -93,6 +93,14 @@ class AuthService {
     }
   }
 
+  Future<Map<String, String?>> getOAuthConfig() async {
+    final response = await _apiClient.get('/oauth-config');
+    return {
+      'clientId': response['clientId'] as String,
+      'clientSecret': response['clientSecret'] as String?,
+    };
+  }
+
   Future<bool> logout() async {
     try {
       await _apiClient.post('/logout');

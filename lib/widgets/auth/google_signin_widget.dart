@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:provider/provider.dart';
@@ -8,7 +9,9 @@ import '../../l10n/app_localizations.dart';
 import '../../providers/auth_provider.dart';
 import '../../constants/text_styles.dart';
 import '../../utils/snackbar_utils.dart';
+import '../../services/auth_service.dart';
 import '../../services/google_sign_in_native_service.dart';
+import '../../services/google_sign_in_desktop_service.dart';
 import 'google_signin_button.dart';
 
 class GoogleSignInWidget extends StatefulWidget {
@@ -29,23 +32,53 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
   final GoogleSignInNativeService _googleNativeService =
       GoogleSignInNativeService();
   StreamSubscription<GoogleSignInAuthenticationEvent>? _authEventSubscription;
-  bool _isWebInitialized = false;
+  bool _isInitialized = false;
+  bool _isInitializing = false;
+  String? _initError;
 
   @override
   void initState() {
     super.initState();
-    if (kIsWeb) {
-      _initializeWebAuth();
-    }
+    _initializeGoogleSignIn();
   }
 
-  Future<void> _initializeWebAuth() async {
-    await GoogleSignIn.instance.initialize();
-    _setupWebAuthListener();
-    if (mounted) {
-      setState(() {
-        _isWebInitialized = true;
-      });
+  Future<void> _initializeGoogleSignIn() async {
+    if (_isInitializing || _isInitialized) return;
+
+    setState(() {
+      _isInitializing = true;
+      _initError = null;
+    });
+
+    try {
+      final authService = AuthService(context: context);
+      final config = await authService.getOAuthConfig();
+
+      if (kIsWeb) {
+        await GoogleSignIn.instance.initialize();
+        _setupWebAuthListener();
+      } else if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+        await GoogleSignInDesktopService().initialize(
+          config['clientId']!,
+          config['clientSecret']!,
+        );
+      } else {
+        await _googleNativeService.initialize(config['clientId']);
+      }
+
+      if (mounted) {
+        setState(() {
+          _isInitialized = true;
+          _isInitializing = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _initError = e.toString();
+          _isInitializing = false;
+        });
+      }
     }
   }
 
@@ -56,7 +89,8 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
   }
 
   void _setupWebAuthListener() {
-    _authEventSubscription = GoogleSignIn.instance.authenticationEvents.listen((event) {
+    _authEventSubscription =
+        GoogleSignIn.instance.authenticationEvents.listen((event) {
       if (event is GoogleSignInAuthenticationEventSignIn) {
         _handleWebSignInComplete(event.user);
       }
@@ -104,13 +138,10 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
   }
 
   Future<void> _handleGoogleSignIn() async {
-    // On web, authentication is handled automatically by renderButton()
-    // This method is only called on native platforms
     if (kIsWeb) {
       return;
     }
 
-    // Native platforms
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     try {
@@ -146,7 +177,6 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
       authProvider.stopLoading();
 
       if (mounted) {
-        // User cancelled - don't show error
         if (e.code == GoogleSignInExceptionCode.canceled) {
           return;
         }
@@ -176,13 +206,16 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (_initError != null) {
+      return const SizedBox.shrink();
+    }
+
     final l10n = AppLocalizations.of(context)!;
 
     return Column(
       children: [
         const SizedBox(height: 16),
 
-        // Divider
         Row(
           children: [
             Expanded(
@@ -193,7 +226,8 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.or, style: AppTextStyles.getCaptionStyle(context)),
+              child:
+                  Text(l10n.or, style: AppTextStyles.getCaptionStyle(context)),
             ),
             Expanded(
               child: Divider(
@@ -206,16 +240,7 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
 
         const SizedBox(height: 16),
 
-        // Google Sign-In Button
-        if (kIsWeb && _isWebInitialized)
-          // Show native Google button on web
-          const SizedBox(
-            width: double.infinity,
-            height: 56,
-            child: GoogleSignInButtonWeb(),
-          )
-        else if (kIsWeb)
-          // Show loading placeholder while initializing
+        if (!_isInitialized)
           SizedBox(
             width: double.infinity,
             height: 56,
@@ -228,8 +253,13 @@ class _GoogleSignInWidgetState extends State<GoogleSignInWidget> {
               child: const CircularProgressIndicator(),
             ),
           )
+        else if (kIsWeb)
+          const SizedBox(
+            width: double.infinity,
+            height: 56,
+            child: GoogleSignInButtonWeb(),
+          )
         else
-          // Show custom styled button for native platforms
           SizedBox(
             width: double.infinity,
             height: 56,

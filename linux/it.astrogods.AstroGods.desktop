@@ -1,13 +1,13 @@
 [Desktop Entry]
 Name=AstroGods
 GenericName=Astrology App
-Comment=Personalized astrological analysis and insights
-Comment[it]=Analisi astrologica personalizzata
+Comment=Birth chart readings, synastry, and transits based on Egyptian astrology
+Comment[it]=Tema natale, sinastria e transiti basati sull'astrologia egizia
 Exec=astrogods
 Icon=it.astrogods.AstroGods
 Terminal=false
 Type=Application
-Categories=Utility;Education;
+Categories=Utility;Lifestyle;
 Keywords=astrology;horoscope;birth chart;zodiac;
 Keywords[it]=astrologia;oroscopo;tema natale;zodiaco;
 StartupWMClass=astrogods

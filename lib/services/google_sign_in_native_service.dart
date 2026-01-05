@@ -3,7 +3,6 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import '../models/google_user_data.dart';
-import '../config/environment.dart';
 import 'google_sign_in_desktop_service.dart';
 
 class GoogleSignInNativeService {
@@ -16,30 +15,26 @@ class GoogleSignInNativeService {
   bool _isInitialized = false;
   StreamSubscription<GoogleSignInAuthenticationEvent>? _authSubscription;
 
-  Future<void> _initialize() async {
+  Future<void> initialize(String? clientId) async {
     if (_isInitialized) return;
 
     final GoogleSignIn signIn = GoogleSignIn.instance;
 
-    // Platform-specific initialization
     if (kIsWeb) {
-      // Web platform - client ID configured in index.html meta tag
       await signIn.initialize();
     } else {
       if (Platform.isAndroid) {
-        await signIn.initialize(
-            serverClientId: Environment.googleOAuthClientId);
+        await signIn.initialize(serverClientId: clientId);
       } else if (Platform.isIOS) {
-        // iOS uses GoogleService-Info.plist configuration
         await signIn.initialize();
       } else {
-        // Desktop platforms (Linux, Windows, macOS) - require explicit client IDs
-        await signIn.initialize(clientId: Environment.googleOAuthClientId);
+        throw Exception('Use GoogleSignInDesktopService for desktop platforms');
       }
     }
 
     _authSubscription?.cancel();
-    _authSubscription = signIn.authenticationEvents.listen(_handleAuthenticationEvent);
+    _authSubscription =
+        signIn.authenticationEvents.listen(_handleAuthenticationEvent);
     await signIn.attemptLightweightAuthentication();
     _isInitialized = true;
   }
@@ -61,7 +56,10 @@ class GoogleSignInNativeService {
     }
 
     try {
-      await _initialize();
+      if (!_isInitialized) {
+        throw Exception(
+            'GoogleSignInNativeService not initialized. Call initialize() first.');
+      }
 
       if (GoogleSignIn.instance.supportsAuthenticate()) {
         await GoogleSignIn.instance.authenticate();
