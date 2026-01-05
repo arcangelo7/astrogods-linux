@@ -30,15 +30,19 @@
       "sources": [
         {
           "type": "archive",
-          "only-arches": ["x86_64"],
+          "only-arches": [
+            "x86_64"
+          ],
           "url": "https://github.com/arcangelo7/astrogods-app/releases/download/4.6.3/linux-x64-4.6.3.tar.gz",
-          "sha256": "c56d8124156e017fc0010a275ff586dbfbe3fae2e35b5e3911b2ff4639ab03fe"
+          "sha256": "a24c93b88cec73ed28885697e28dca3c9b50329fec7b04dd0e368afcfc065e78"
         },
         {
           "type": "archive",
-          "only-arches": ["aarch64"],
-          "url": "https://github.com/arcangelo7/astrogods-app/releases/download/4.5.1/linux-arm64-4.5.1.tar.gz",
-          "sha256": "PLACEHOLDER_ARM64_CHECKSUM"
+          "only-arches": [
+            "aarch64"
+          ],
+          "url": "https://github.com/arcangelo7/astrogods-app/releases/download/4.6.3/linux-arm64-4.6.3.tar.gz",
+          "sha256": "a1d5cf2da1b316b5ee4ef66764e9fbb46102197d2e382be2cbc2dd3299a30fdd"
         }
       ]
     }
