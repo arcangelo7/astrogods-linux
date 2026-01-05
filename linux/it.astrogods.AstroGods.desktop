@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=AstroGods
+GenericName=Astrology App
+Comment=Personalized astrological analysis and insights
+Comment[it]=Analisi astrologica personalizzata
+Exec=astrogods
+Icon=it.astrogods.AstroGods
+Terminal=false
+Type=Application
+Categories=Utility;Education;
+Keywords=astrology;horoscope;birth chart;zodiac;
+Keywords[it]=astrologia;oroscopo;tema natale;zodiaco;
+StartupWMClass=astrogods

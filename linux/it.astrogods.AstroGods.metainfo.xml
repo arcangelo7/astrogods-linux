@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>it.astrogods.AstroGods</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>AstroGods</name>
+  <name xml:lang="it">AstroGods</name>
+  <summary>Explore your birth chart and understand yourself more deeply</summary>
+  <summary xml:lang="it">Esplora il tuo tema natale e comprendi te stesso più a fondo</summary>
+  <description>
+    <p>
+      AstroGods is a modern, beautifully designed Astrology app focused on self-knowledge.
+      It provides personalized birth chart interpretations, synastry analysis for relationships,
+      and transit readings.
+    </p>
+    <p xml:lang="it">
+      AstroGods è un'app di Astrologia moderna e dal design curato, focalizzata sull'autoconoscenza.
+      Offre interpretazioni personalizzate del tema natale, analisi di sinastria per le relazioni
+      e letture dei transiti.
+    </p>
+    <p>
+      The app is designed to make Astrology accessible as a tool for self-reflection and exploration.
+      It uses the Swiss Ephemeris for precise astronomical calculations and follows the Egyptian
+      Astrology methodology with equal-area houses (Vehlow).
+    </p>
+    <p xml:lang="it">
+      L'app è pensata per rendere l'Astrologia accessibile come strumento di autoriflessione
+      e esplorazione. Utilizza le Effemeridi Svizzere per calcoli astronomici precisi e segue
+      la metodologia dell'Astrologia Egizia con case ad area uguale (Vehlow).
+    </p>
+  </description>
+  <launchable type="desktop-id">it.astrogods.AstroGods.desktop</launchable>
+  <url type="homepage">https://astrogods.it</url>
+  <developer id="it.astrogods">
+    <name>AstroGods</name>
+  </developer>
+  <branding>
+    <color type="primary" scheme_preference="light">#6750a4</color>
+    <color type="primary" scheme_preference="dark">#d0bcff</color>
+  </branding>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/homepage_dark.png</image>
+      <caption>Welcome to AstroGods</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/birth_chart_dark.png</image>
+      <caption>Personalized birth chart interpretation</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/book_of_caverns_dark.png</image>
+      <caption>Synastry analysis for relationships</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/forecast_dark.png</image>
+      <caption>Transit readings to understand current phases</caption>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="4.5.1" date="2026-01-03">
+      <description>
+        <p>Switched to Freedesktop runtime 25.08 and excluded aarch64</p>
+      </description>
+    </release>
+    <release version="4.5.0" date="2026-01-03">
+      <description>
+        <p>Renamed app ID to it.astrogods.AstroGods</p>
+      </description>
+    </release>
+    <release version="4.4.0" date="2026-01-03">
+      <description>
+        <p>Added Flathub domain verification</p>
+      </description>
+    </release>
+    <release version="4.3.2" date="2026-01-03">
+      <description>
+        <p>Updated release metadata for Flathub</p>
+      </description>
+    </release>
+    <release version="4.3.1" date="2026-01-03">
+      <description>
+        <p>Updated app icons for all platforms</p>
+      </description>
+    </release>
+    <release version="4.3.0" date="2026-01-03">
+      <description>
+        <p>Added screenshots and updated description for Flathub</p>
+      </description>
+    </release>
+    <release version="4.2.2" date="2026-01-03">
+      <description>
+        <p>Added screenshots and updated app description</p>
+      </description>
+    </release>
+    <release version="4.2.1" date="2026-01-03">
+      <description>
+        <p>Fixed Google Sign-In for Flatpak</p>
+      </description>
+    </release>
+    <release version="4.1.0" date="2025-01-02">
+      <description>
+        <p>Added Linux Flatpak support</p>
+      </description>
+    </release>
+  </releases>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+</component>
