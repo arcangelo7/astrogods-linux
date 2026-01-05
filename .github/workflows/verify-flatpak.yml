@@ -32,11 +32,14 @@ jobs:
           flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           flatpak install -y --user flathub org.flatpak.Builder
 
-      - name: Build Flatpak
-        run: dbus-run-session flatpak run --command=flathub-build org.flatpak.Builder flatpak/it.astrogods.AstroGods.json
+      - name: Build Flatpak from source
+        run: |
+          dbus-run-session flatpak run --command=flatpak-builder org.flatpak.Builder \
+            --repo=repo --force-clean --sandbox --user --install-deps-from=flathub \
+            build it.astrogods.AstroGods.yml
 
       - name: Lint manifest
-        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/it.astrogods.AstroGods.json
+        run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest it.astrogods.AstroGods.yml
 
       - name: Lint repo
         run: flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo

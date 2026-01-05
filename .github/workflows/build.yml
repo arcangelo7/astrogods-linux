@@ -6,65 +6,7 @@ on:
       - '*.*.*'
 
 jobs:
-  build-linux:
-    strategy:
-      matrix:
-        include:
-          - arch: x64
-            runner: ubuntu-latest
-          - arch: arm64
-            runner: ubuntu-24.04-arm
-    runs-on: ${{ matrix.runner }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Cache Flutter SDK
-        uses: actions/cache@v4
-        with:
-          path: flutter
-          key: flutter-linux-${{ matrix.arch }}-3.38.5
-
-      - name: Setup Flutter
-        run: |
-          if [ ! -d "flutter" ]; then
-            git clone --depth 1 --branch 3.38.5 https://github.com/flutter/flutter.git flutter
-          fi
-          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
-
-      - name: Create .env files
-        run: |
-          cat > .env.flutter.prod << EOF
-          API_BASE_URL=${{ secrets.API_BASE_URL }}
-          APP_VERSION=${{ github.ref_name }}
-          GOOGLE_OAUTH_CLIENT_ID=${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
-          GOOGLE_OAUTH_CLIENT_SECRET=${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
-          EOF
-          cp .env.flutter.prod .env.flutter.mobile
-          cp .env.flutter.prod .env.flutter.desktop
-          cp .env.flutter.prod .env.flutter.web
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
-
-      - name: Build and package
-        run: |
-          flutter pub get
-          flutter build linux --release
-          cd build/linux/${{ matrix.arch }}/release
-          mv bundle linux-${{ matrix.arch }}-${{ github.ref_name }}
-          tar -czf ../../../../linux-${{ matrix.arch }}-${{ github.ref_name }}.tar.gz linux-${{ matrix.arch }}-${{ github.ref_name }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-${{ matrix.arch }}-build
-          path: linux-${{ matrix.arch }}-${{ github.ref_name }}.tar.gz
-
-  release:
-    needs: build-linux
+  generate-manifest:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -73,38 +15,30 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
 
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-
-      - name: Prepare artifacts
+      - name: Update flatpak-flutter.yml with tag
         run: |
-          mv linux-x64-build/linux-x64-${{ github.ref_name }}.tar.gz .
-          mv linux-arm64-build/linux-arm64-${{ github.ref_name }}.tar.gz .
+          sed -i "s/VERSION_PLACEHOLDER/${{ github.ref_name }}/g" flatpak-flutter.yml
 
-      - name: Update Flatpak manifest
+      - name: Run flatpak-flutter preprocessor
         run: |
-          VERSION=${{ github.ref_name }}
-          CHECKSUM_X64=$(sha256sum linux-x64-${VERSION}.tar.gz | cut -d' ' -f1)
-          CHECKSUM_ARM64=$(sha256sum linux-arm64-${VERSION}.tar.gz | cut -d' ' -f1)
-          URL_BASE="https://github.com/arcangelo7/astrogods-app/releases/download/${VERSION}"
-          jq --arg url_x64 "${URL_BASE}/linux-x64-${VERSION}.tar.gz" \
-             --arg sha_x64 "${CHECKSUM_X64}" \
-             --arg url_arm64 "${URL_BASE}/linux-arm64-${VERSION}.tar.gz" \
-             --arg sha_arm64 "${CHECKSUM_ARM64}" \
-             '.modules[0].sources[0].url = $url_x64 |
-              .modules[0].sources[0].sha256 = $sha_x64 |
-              .modules[0].sources[1].url = $url_arm64 |
-              .modules[0].sources[1].sha256 = $sha_arm64' \
-             flatpak/it.astrogods.AstroGods.json > flatpak/tmp.json
-          mv flatpak/tmp.json flatpak/it.astrogods.AstroGods.json
+          docker run --rm \
+            -v "$PWD":/usr/src/flatpak \
+            -u $(id -u):$(id -g) \
+            theappgineer/flatpak-flutter:latest \
+            flatpak-flutter.yml
 
-      - name: Commit manifest
+      - name: Restore VERSION_PLACEHOLDER in input manifest
+        run: |
+          sed -i "s/${{ github.ref_name }}/VERSION_PLACEHOLDER/g" flatpak-flutter.yml
+
+      - name: Commit generated manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add flatpak/it.astrogods.AstroGods.json
-          git commit -m "chore: update Flatpak manifest checksums for ${{ github.ref_name }}" || echo "No changes"
+          git add it.astrogods.AstroGods.yml pubspec-sources.json flutter-sdk-*.json
+          git commit -m "chore: update Flatpak manifest for ${{ github.ref_name }}" || echo "No changes"
           git push origin main
 
       - name: Create release
@@ -112,7 +46,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create ${{ github.ref_name }} \
-            linux-x64-${{ github.ref_name }}.tar.gz \
-            linux-arm64-${{ github.ref_name }}.tar.gz \
             --title "AstroGods ${{ github.ref_name }}" \
-            --notes "Linux release for Flatpak distribution (x64 and arm64)"
+            --notes "Source build release for Flathub"
