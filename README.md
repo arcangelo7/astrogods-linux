@@ -43,7 +43,7 @@ ARM64 builds are also available.
 ## Building from source
 
 Requirements:
-- Flutter 3.38+
+- Flutter 3.38
 - Linux build dependencies: `clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev`
 
 ```bash
