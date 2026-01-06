@@ -18,6 +18,8 @@ modules:
       env:
         PATH: /var/lib/flutter/bin:/app/bin:/usr/bin
         PUB_CACHE: /run/build/astrogods/.pub-cache
+        CC: gcc
+        CXX: g++
       arch:
         x86_64:
           env:
