@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add it.astrogods.AstroGods.yml pubspec-sources.json flutter-sdk-*.json
+          git add it.astrogods.AstroGods.yml pubspec-sources.json flutter-sdk-*.json flutter-shared.sh.patch
           git commit -m "chore: update Flatpak manifest for ${{ github.ref_name }}" || echo "No changes"
           git push origin main
 
