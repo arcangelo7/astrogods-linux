@@ -3211,6 +3211,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get releaseNotes_4_7_1 => 'Connection error messages now translated.';
+
+  @override
   String get releaseNotes_4_5_1 =>
       'New app icons. Improved logo quality in the menu. Fixed a validation issue when editing birth charts.';
 

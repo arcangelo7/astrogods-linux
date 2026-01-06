@@ -933,6 +933,7 @@
   "releaseNotes": "Note di rilascio",
   "releaseNotesTitle": "Novità",
   "version": "Versione {version}",
+  "releaseNotes_4_7_1": "Messaggi di errore di connessione ora tradotti in italiano.",
   "releaseNotes_4_5_1": "Nuove icone dell'app. Migliorata la qualità del logo nel menu. Risolto un problema di validazione nella modifica del tema natale.",
   "releaseNotes_4_0_1": "Risolto un problema per cui il pulsante PDF non appariva dopo la generazione della lettura. I grafici salvati ora si aggiornano correttamente tornando indietro con il browser.",
   "releaseNotes_4_0_0": "Immagini ad alta risoluzione nella visualizzazione a schermo intero. Nuova griglia degli aspetti per sinastria e transiti. I PDF ora includono pagine con dettagli e griglia degli aspetti. Navigazione desktop migliorata con frecce, indicatori cliccabili e tasti direzionali. Zoom a schermo intero migliorato per grafici e immagini. App più leggera e veloce. Risolto problema di layout in modalità orizzontale su mobile.",

@@ -3240,6 +3240,10 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get releaseNotes_4_7_1 =>
+      'Messaggi di errore di connessione ora tradotti in italiano.';
+
+  @override
   String get releaseNotes_4_5_1 =>
       'Nuove icone dell\'app. Migliorata la qualità del logo nel menu. Risolto un problema di validazione nella modifica del tema natale.';
 

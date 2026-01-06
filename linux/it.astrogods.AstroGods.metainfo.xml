@@ -58,6 +58,11 @@
   </screenshots>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="4.7.1" date="2026-01-06">
+      <description>
+        <p>Connection error messages now translated</p>
+      </description>
+    </release>
     <release version="4.5.1" date="2026-01-03">
       <description>
         <p>Switched to Freedesktop runtime 25.08 and excluded aarch64</p>

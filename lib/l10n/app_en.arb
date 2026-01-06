@@ -954,6 +954,7 @@
   "releaseNotes": "Release notes",
   "releaseNotesTitle": "What's new",
   "version": "Version {version}",
+  "releaseNotes_4_7_1": "Connection error messages now translated.",
   "releaseNotes_4_5_1": "New app icons. Improved logo quality in the menu. Fixed a validation issue when editing birth charts.",
   "releaseNotes_4_0_1": "Fixed an issue where the PDF button did not appear after reading generation. Saved charts now refresh correctly when navigating back with the browser.",
   "releaseNotes_4_0_0": "High-resolution images in fullscreen view. New aspect grid for synastry and transits. PDF exports now include details and aspect grid pages. Enhanced desktop navigation with arrows, clickable indicators, and keyboard shortcuts. Improved fullscreen zoom for charts and images. Lighter and faster app. Fixed layout issue in landscape mode on mobile.",

@@ -5696,6 +5696,12 @@ abstract class AppLocalizations {
   /// **'Version {version}'**
   String version(Object version);
 
+  /// No description provided for @releaseNotes_4_7_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection error messages now translated.'**
+  String get releaseNotes_4_7_1;
+
   /// No description provided for @releaseNotes_4_5_1.
   ///
   /// In en, this message translates to:
