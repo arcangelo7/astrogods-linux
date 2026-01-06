@@ -17,7 +17,7 @@ https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 
 ## Installation
 
-This repository contains the Flatpak manifest for publishing AstroGods on Flathub. Since this is a Flutter project, the source code can theoretically be compiled for other platforms (Android, iOS, macOS, Windows, Web).
+This repository contains the source code and Flatpak configuration for AstroGods. The official Flathub manifest is maintained at [flathub/it.astrogods.AstroGods](https://github.com/flathub/it.astrogods.AstroGods). Since this is a Flutter project, the source code can theoretically be compiled for other platforms (Android, iOS, macOS, Windows, Web).
 
 ### Flatpak
 
