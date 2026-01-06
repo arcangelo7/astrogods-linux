@@ -5,28 +5,28 @@
   <project_license>AGPL-3.0-only</project_license>
   <name>AstroGods</name>
   <name xml:lang="it">AstroGods</name>
-  <summary>Explore your birth chart and understand yourself more deeply</summary>
-  <summary xml:lang="it">Esplora il tuo tema natale e comprendi te stesso più a fondo</summary>
+  <summary>Deep astrological interpretations for those who want to go beyond the surface</summary>
+  <summary xml:lang="it">Interpretazioni astrologiche profonde per chi vuole andare oltre la superficie</summary>
   <description>
     <p>
-      AstroGods is a modern, beautifully designed Astrology app focused on self-knowledge.
-      It provides personalized birth chart interpretations, synastry analysis for relationships,
-      and transit readings.
+      AstroGods starts from the position of the planets at the moment of your birth to offer
+      you a portrait of who you are: your way of loving, thinking, acting. You can explore
+      compatibility with another person or understand what energies characterize a period of your life.
     </p>
     <p xml:lang="it">
-      AstroGods è un'app di Astrologia moderna e dal design curato, focalizzata sull'autoconoscenza.
-      Offre interpretazioni personalizzate del tema natale, analisi di sinastria per le relazioni
-      e letture dei transiti.
+      AstroGods parte dalla posizione dei pianeti nel momento della tua nascita per offrirti
+      un ritratto di chi sei: il tuo modo di amare, pensare, agire. Puoi esplorare la compatibilità
+      con un'altra persona o capire quali energie caratterizzano un periodo della tua vita.
     </p>
     <p>
-      The app is designed to make Astrology accessible as a tool for self-reflection and exploration.
-      It uses the Swiss Ephemeris for precise astronomical calculations and follows the Egyptian
-      Astrology methodology with equal-area houses (Vehlow).
+      Here, Astrology is taken seriously. The astronomical calculations are the most precise
+      available, the methodology adheres to the original Egyptian tradition, the interpretations
+      are in-depth. No generic horoscopes: each reading goes into the detail of your unique configuration.
     </p>
     <p xml:lang="it">
-      L'app è pensata per rendere l'Astrologia accessibile come strumento di autoriflessione
-      e esplorazione. Utilizza le Effemeridi Svizzere per calcoli astronomici precisi e segue
-      la metodologia dell'Astrologia Egizia con case ad area uguale (Vehlow).
+      Qui l'Astrologia si fa sul serio. I calcoli astronomici sono i più precisi disponibili,
+      la metodologia aderisce alla tradizione egizia originale, le interpretazioni sono approfondite.
+      Niente oroscopi generici: ogni lettura entra nel dettaglio della tua configurazione unica.
     </p>
   </description>
   <launchable type="desktop-id">it.astrogods.AstroGods.desktop</launchable>
@@ -58,6 +58,11 @@
   </screenshots>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="4.7.3" date="2026-01-06">
+      <description>
+        <p>Fixed PDF download in Flatpak</p>
+      </description>
+    </release>
     <release version="4.7.2" date="2026-01-06">
       <description>
         <p>Open sourced frontend and added aarch64 support</p>

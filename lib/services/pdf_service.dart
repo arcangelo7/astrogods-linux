@@ -758,7 +758,7 @@ class PdfService {
   }
 
   Future<bool> sharePdf(Uint8List pdfBytes, String filename) async {
-    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
+    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS || Platform.isLinux)) {
       final l10n = AppLocalizations.of(context)!;
       final result = await FilePicker.platform.saveFile(
         dialogTitle: l10n.savePdfDialogTitle,
