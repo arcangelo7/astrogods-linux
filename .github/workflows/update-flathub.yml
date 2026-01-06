@@ -1,0 +1,82 @@
+name: Update Flathub
+
+on:
+  workflow_run:
+    workflows: ["Verify Flatpak"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  update-flathub:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout astrogods-app
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Get version from manifest
+        id: version
+        run: |
+          VERSION=$(grep -oP 'tag: \K[0-9]+\.[0-9]+\.[0-9]+' it.astrogods.AstroGods.yml | head -1)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Clone Flathub repo
+        run: |
+          git clone https://x-access-token:${{ secrets.FLATHUB_TOKEN }}@github.com/flathub/it.astrogods.AstroGods.git flathub-repo
+
+      - name: Check if update needed
+        id: check
+        run: |
+          FLATHUB_VERSION=$(grep -oP 'tag: \K[0-9]+\.[0-9]+\.[0-9]+' flathub-repo/it.astrogods.AstroGods.yml | head -1)
+          if [ "$FLATHUB_VERSION" = "${{ steps.version.outputs.version }}" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "Flathub already at version ${{ steps.version.outputs.version }}"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "Updating Flathub from $FLATHUB_VERSION to ${{ steps.version.outputs.version }}"
+          fi
+
+      - name: Copy generated files
+        if: steps.check.outputs.skip == 'false'
+        run: |
+          cp it.astrogods.AstroGods.yml flathub-repo/
+          cp pubspec-sources.json flathub-repo/
+          cp flutter-sdk-*.json flathub-repo/
+          cp flutter-shared.sh.patch flathub-repo/
+          cp -r printing flathub-repo/
+
+      - name: Create PR on Flathub
+        if: steps.check.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.FLATHUB_TOKEN }}
+        run: |
+          cd flathub-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="update-${{ steps.version.outputs.version }}"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore: update to ${{ steps.version.outputs.version }}"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --title "chore: update to ${{ steps.version.outputs.version }}" \
+            --body "Automated update from [astrogods-app](https://github.com/arcangelo7/astrogods-app)." \
+            --head "$BRANCH" \
+            --base master
+
+      - name: Enable auto-merge
+        if: steps.check.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.FLATHUB_TOKEN }}
+        run: |
+          cd flathub-repo
+          gh pr merge --auto --squash
