@@ -7,12 +7,12 @@ AstroGods is a modern, beautifully designed Astrology app focused on self-knowle
 https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 
 <p align="center">
-  <img src="screenshots/1000x700/homepage_dark.png" width="45%" alt="Homepage" />
-  <img src="screenshots/1000x700/birth_chart_dark.png" width="45%" alt="Birth chart" />
+  <img src="branding/screenshots/2446x1380/home_dark_en.png" width="45%" alt="Homepage" />
+  <img src="branding/screenshots/2446x1380/birth_chart_reading_dark_en.png" width="45%" alt="Birth Chart Reading" />
 </p>
 <p align="center">
-  <img src="screenshots/1000x700/book_of_caverns_dark.png" width="45%" alt="Synastry" />
-  <img src="screenshots/1000x700/forecast_dark.png" width="45%" alt="Forecast" />
+  <img src="branding/screenshots/2446x1380/birth_chart_dark_en.png" width="45%" alt="Birth Chart" />
+  <img src="branding/screenshots/2446x1380/settings_dark_en.png" width="45%" alt="Settings" />
 </p>
 
 ## Installation

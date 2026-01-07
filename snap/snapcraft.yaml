@@ -1,0 +1,46 @@
+name: astrogods
+title: AstroGods
+adopt-info: astrogods
+summary: In-depth Astrology readings
+description: |
+  AstroGods starts from the position of the planets at the moment of your birth
+  to offer you a portrait of who you are: your way of loving, thinking, acting.
+  You can explore compatibility with another person or understand what energies
+  characterize a period of your life.
+
+  Here, Astrology is taken seriously. The astronomical calculations are the most
+  precise available, the methodology adheres to the original Egyptian tradition,
+  the interpretations are in-depth. No generic horoscopes: each reading goes
+  into the detail of your unique configuration.
+
+license: AGPL-3.0-only
+icon: snap/gui/astrogods.png
+website: https://astrogods.it
+source-code: https://github.com/arcangelo7/astrogods-app
+issues: https://github.com/arcangelo7/astrogods-app/issues
+contact: contact@astrogods.it
+
+confinement: strict
+base: core24
+grade: stable
+
+platforms:
+  amd64:
+  arm64:
+
+apps:
+  astrogods:
+    command: astrogods
+    extensions: [gnome]
+    plugs:
+      - network
+      - network-status
+
+parts:
+  astrogods:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart
+    override-pull: |
+      craftctl default
+      craftctl set version=$(grep '^version:' pubspec.yaml | sed 's/version: //' | sed 's/+.*//')

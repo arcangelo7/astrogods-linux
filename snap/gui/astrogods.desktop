@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=AstroGods
+GenericName=Astrology App
+Comment=Birth chart readings, synastry, and transits based on Egyptian astrology
+Comment[it]=Tema natale, sinastria e transiti basati sull'astrologia egizia
+Exec=astrogods
+Icon=${SNAP}/meta/gui/astrogods.png
+Terminal=false
+Type=Application
+Categories=Education;
+Keywords=astrology;horoscope;birth chart;zodiac;
+Keywords[it]=astrologia;oroscopo;tema natale;zodiaco;
+StartupWMClass=astrogods

@@ -1,0 +1,41 @@
+name: Verify Snap
+
+on:
+  workflow_run:
+    workflows: ["Build Snap"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  verify-snap:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Download snap artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: snap-${{ matrix.arch }}
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install review-tools
+        run: sudo snap install review-tools
+
+      - name: Review snap
+        run: snap-review astrogods_*.snap
+
+      - name: Install and test snap
+        run: |
+          sudo snap install --dangerous astrogods_*.snap
+          snap list astrogods
