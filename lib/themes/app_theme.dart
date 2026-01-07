@@ -3,7 +3,6 @@ import '../constants/text_styles.dart';
 import '../constants/colors.dart';
 
 class AppTheme {
-  // Seed color that harmonizes with starry night background
   static const Color _seedColor = AppColors.seedColor;
   
   static ThemeData buildDarkTheme(ColorScheme scheme) {
@@ -12,7 +11,6 @@ class AppTheme {
       colorScheme: scheme,
       scaffoldBackgroundColor: scheme.surface,
       canvasColor: scheme.surface,
-      fontFamily: 'Roboto',
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -79,14 +77,6 @@ class AppTheme {
         selectedColor: scheme.secondary.withValues(alpha: 0.25),
         labelStyle: TextStyle(color: scheme.onSurface),
       ),
-      textTheme: TextTheme(
-        bodyLarge: TextStyle(color: scheme.onSurface),
-        bodyMedium: TextStyle(color: scheme.onSurface.withValues(alpha: 0.8)),
-        bodySmall: TextStyle(color: scheme.onSurface.withValues(alpha: 0.6)),
-        titleLarge: TextStyle(color: scheme.onSurface),
-        titleMedium: TextStyle(color: scheme.onSurface),
-        titleSmall: TextStyle(color: scheme.onSurface.withValues(alpha: 0.8)),
-      ),
       iconTheme: IconThemeData(color: scheme.onSurface.withValues(alpha: 0.7)),
     );
   }
@@ -97,7 +87,6 @@ class AppTheme {
       colorScheme: scheme,
       scaffoldBackgroundColor: scheme.surface,
       canvasColor: scheme.surface,
-      fontFamily: 'Roboto',
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -163,14 +152,6 @@ class AppTheme {
         backgroundColor: scheme.primary.withValues(alpha: 0.05),
         selectedColor: scheme.secondary.withValues(alpha: 0.12),
         labelStyle: TextStyle(color: scheme.onSurface),
-      ),
-      textTheme: TextTheme(
-        bodyLarge: TextStyle(color: scheme.onSurface),
-        bodyMedium: TextStyle(color: scheme.onSurface.withValues(alpha: 0.8)),
-        bodySmall: TextStyle(color: scheme.onSurface.withValues(alpha: 0.6)),
-        titleLarge: TextStyle(color: scheme.onSurface),
-        titleMedium: TextStyle(color: scheme.onSurface),
-        titleSmall: TextStyle(color: scheme.onSurface.withValues(alpha: 0.8)),
       ),
       iconTheme: IconThemeData(color: scheme.onSurface.withValues(alpha: 0.7)),
     );

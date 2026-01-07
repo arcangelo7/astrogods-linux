@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -8,7 +7,6 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
-import 'package:file_saver/file_saver.dart';
 import '../config/image_urls.dart';
 import '../models/birth_chart.dart';
 import '../models/synastry.dart';
@@ -758,21 +756,12 @@ class PdfService {
   }
 
   Future<bool> sharePdf(Uint8List pdfBytes, String filename) async {
-    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS || Platform.isLinux)) {
-      final l10n = AppLocalizations.of(context)!;
-      final result = await FilePicker.platform.saveFile(
-        dialogTitle: l10n.savePdfDialogTitle,
-        fileName: filename,
-        bytes: pdfBytes,
-      );
-      return result != null;
-    } else {
-      await FileSaver.instance.saveFile(
-        bytes: pdfBytes,
-        name: filename,
-        mimeType: MimeType.pdf,
-      );
-      return true;
-    }
+    final l10n = AppLocalizations.of(context)!;
+    final result = await FilePicker.platform.saveFile(
+      dialogTitle: l10n.savePdfDialogTitle,
+      fileName: filename,
+      bytes: pdfBytes,
+    );
+    return result != null;
   }
 }

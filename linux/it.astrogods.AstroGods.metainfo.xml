@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2026 Arcangelo Massari -->
 <component type="desktop-application">
   <id>it.astrogods.AstroGods</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>AGPL-3.0-only</project_license>
   <name>AstroGods</name>
   <name xml:lang="it">AstroGods</name>
-  <summary>Deep astrological interpretations for those who want to go beyond the surface</summary>
-  <summary xml:lang="it">Interpretazioni astrologiche profonde per chi vuole andare oltre la superficie</summary>
+  <summary>In-depth Astrology readings</summary>
+  <summary xml:lang="it">Letture astrologiche approfondite</summary>
   <description>
     <p>
       AstroGods starts from the position of the planets at the moment of your birth to offer
@@ -31,30 +32,88 @@
   </description>
   <launchable type="desktop-id">it.astrogods.AstroGods.desktop</launchable>
   <url type="homepage">https://astrogods.it</url>
+  <url type="bugtracker">https://github.com/arcangelo7/astrogods-app/issues</url>
   <url type="vcs-browser">https://github.com/arcangelo7/astrogods-app</url>
-  <developer id="it.astrogods">
-    <name>AstroGods</name>
+  <categories>
+    <category>Education</category>
+  </categories>
+  <keywords>
+    <keyword>astrology</keyword>
+    <keyword>horoscope</keyword>
+    <keyword>birth chart</keyword>
+    <keyword>zodiac</keyword>
+    <keyword xml:lang="it">astrologia</keyword>
+    <keyword xml:lang="it">oroscopo</keyword>
+    <keyword xml:lang="it">tema natale</keyword>
+    <keyword xml:lang="it">zodiaco</keyword>
+  </keywords>
+  <developer id="com.arcangelomassari">
+    <name>Arcangelo Massari</name>
   </developer>
   <branding>
-    <color type="primary" scheme_preference="light">#6750a4</color>
-    <color type="primary" scheme_preference="dark">#d0bcff</color>
+    <color type="primary" scheme_preference="light">#60A5FA</color>
+    <color type="primary" scheme_preference="dark">#1E3A5A</color>
   </branding>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/homepage_dark.png</image>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/home_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/home_dark_ita.png</image>
       <caption>Welcome to AstroGods</caption>
+      <caption xml:lang="it">Benvenuto su AstroGods</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/birth_chart_dark.png</image>
-      <caption>Personalized birth chart interpretation</caption>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_reading_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_reading_dark_ita.png</image>
+      <caption>Birth chart reading</caption>
+      <caption xml:lang="it">Lettura del tema natale</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/book_of_caverns_dark.png</image>
-      <caption>Synastry analysis for relationships</caption>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_dark_ita.png</image>
+      <caption>Birth chart</caption>
+      <caption xml:lang="it">Grafico del tema natale</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-linux/main/screenshots/1000x700/forecast_dark.png</image>
-      <caption>Transit readings to understand current phases</caption>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_details_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_details_dark_ita.png</image>
+      <caption>Aspect chart</caption>
+      <caption xml:lang="it">Grafico degli aspetti</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/settings_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/settings_dark_ita.png</image>
+      <caption>App settings</caption>
+      <caption xml:lang="it">Impostazioni</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/codex_list_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/codex_list_dark_ita.png</image>
+      <caption>Book of caverns</caption>
+      <caption xml:lang="it">Libro delle caverne</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/codex_detail_dark_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/codex_detail_dark_ita.png</image>
+      <caption>Book of caverns details</caption>
+      <caption xml:lang="it">Dettagli del Libro delle caverne</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/home_light_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/home_light_ita.png</image>
+      <caption>Home screen in light mode</caption>
+      <caption xml:lang="it">Schermata iniziale in modalita chiara</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_reading_light_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_reading_light_ita.png</image>
+      <caption>Birth chart reading in light mode</caption>
+      <caption xml:lang="it">Lettura del tema natale in modalita chiara</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_light_en.png</image>
+      <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/2446x1380/birth_chart_light_ita.png</image>
+      <caption>Birth chart in light mode</caption>
+      <caption xml:lang="it">Grafico del tema natale in modalita chiara</caption>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
@@ -123,8 +182,9 @@
   <requires>
     <display_length compare="ge">360</display_length>
   </requires>
-  <supports>
-    <control>pointing</control>
+  <recommends>
     <control>keyboard</control>
-  </supports>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
 </component>
