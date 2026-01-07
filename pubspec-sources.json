@@ -422,34 +422,6 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://pub.dev/api/archives/dio-5.9.0.tar.gz",
-        "sha256": "d90ee57923d1828ac14e492ca49440f65477f4bb1263575900be731a3dac66a9",
-        "strip-components": 0,
-        "dest": ".pub-cache/hosted/pub.dev/dio-5.9.0"
-    },
-    {
-        "type": "inline",
-        "contents": "d90ee57923d1828ac14e492ca49440f65477f4bb1263575900be731a3dac66a9",
-        "dest": ".pub-cache/hosted-hashes/pub.dev",
-        "dest-filename": "dio-5.9.0.sha256"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://pub.dev/api/archives/dio_web_adapter-2.1.1.tar.gz",
-        "sha256": "7586e476d70caecaf1686d21eee7247ea43ef5c345eab9e0cc3583ff13378d78",
-        "strip-components": 0,
-        "dest": ".pub-cache/hosted/pub.dev/dio_web_adapter-2.1.1"
-    },
-    {
-        "type": "inline",
-        "contents": "7586e476d70caecaf1686d21eee7247ea43ef5c345eab9e0cc3583ff13378d78",
-        "dest": ".pub-cache/hosted-hashes/pub.dev",
-        "dest-filename": "dio_web_adapter-2.1.1.sha256"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
         "url": "https://pub.dev/api/archives/dropdown_search-6.0.2.tar.gz",
         "sha256": "c29b3e5147a82a06a4a08b3b574c51cb48cc17ad89893d53ee72a6f86643622e",
         "strip-components": 0,
@@ -530,20 +502,6 @@
         "contents": "d974b6ba2606371ac71dd94254beefb6fa81185bde0b59bdc1df09885da85fde",
         "dest": ".pub-cache/hosted-hashes/pub.dev",
         "dest-filename": "file_picker-10.3.8.sha256"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://pub.dev/api/archives/file_saver-0.3.1.tar.gz",
-        "sha256": "9d93db09bd4da9e43238f9dd485360fc51a5c138eea5ef5f407ec56e58079ac0",
-        "strip-components": 0,
-        "dest": ".pub-cache/hosted/pub.dev/file_saver-0.3.1"
-    },
-    {
-        "type": "inline",
-        "contents": "9d93db09bd4da9e43238f9dd485360fc51a5c138eea5ef5f407ec56e58079ac0",
-        "dest": ".pub-cache/hosted-hashes/pub.dev",
-        "dest-filename": "file_saver-0.3.1.sha256"
     },
     {
         "type": "archive",
@@ -782,6 +740,20 @@
         "contents": "eff94d2a6fc79fa8b811dde79c7549808c2346037ee107a1121b4a644c745f2a",
         "dest": ".pub-cache/hosted-hashes/pub.dev",
         "dest-filename": "go_router-17.0.1.sha256"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://pub.dev/api/archives/google_fonts-7.0.0.tar.gz",
+        "sha256": "eefe5ee217f331627d8bbcf01f91b21c730bf66e225d6dc8a148370b0819168d",
+        "strip-components": 0,
+        "dest": ".pub-cache/hosted/pub.dev/google_fonts-7.0.0"
+    },
+    {
+        "type": "inline",
+        "contents": "eefe5ee217f331627d8bbcf01f91b21c730bf66e225d6dc8a148370b0819168d",
+        "dest": ".pub-cache/hosted-hashes/pub.dev",
+        "dest-filename": "google_fonts-7.0.0.sha256"
     },
     {
         "type": "archive",
