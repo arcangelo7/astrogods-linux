@@ -34,6 +34,7 @@ apps:
     extensions: [gnome]
     plugs:
       - network
+      - network-bind
       - network-status
 
 parts:
