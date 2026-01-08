@@ -7,12 +7,7 @@ enum PlanTier { standard, premium }
 
 enum CardStyle { normal, alternative, main }
 
-enum PlanBadge {
-  currentPlan,
-  upgrade,
-  downgrade,
-  none,
-}
+enum PlanBadge { currentPlan, upgrade, downgrade, none }
 
 class SubscriptionPlan {
   final String title;
@@ -122,6 +117,13 @@ class SubscriptionPlan {
       return plans;
     }
 
+    final isActiveSubscription =
+        currentSubscription.status == 'active' ||
+        currentSubscription.status == 'trialing';
+    if (!isActiveSubscription) {
+      return plans;
+    }
+
     final currentPriceId = _extractPriceIdFromSubscription(currentSubscription);
     if (currentPriceId == null) {
       return plans;
@@ -183,10 +185,7 @@ class SubscriptionPlan {
   }
 
   static int _compareTiers(PlanTier tier1, PlanTier tier2) {
-    const tierOrder = {
-      PlanTier.standard: 0,
-      PlanTier.premium: 1,
-    };
+    const tierOrder = {PlanTier.standard: 0, PlanTier.premium: 1};
     return (tierOrder[tier1] ?? 0) - (tierOrder[tier2] ?? 0);
   }
 
@@ -199,20 +198,26 @@ class SubscriptionPlan {
     return (durationOrder[type1] ?? 0) - (durationOrder[type2] ?? 0);
   }
 
-  static List<SubscriptionPlan> sortByPriority(
-    List<SubscriptionPlan> plans,
-  ) {
+  static List<SubscriptionPlan> sortByPriority(List<SubscriptionPlan> plans) {
     final sortedPlans = List<SubscriptionPlan>.from(plans);
 
     sortedPlans.sort((a, b) {
       if (a.isCurrentPlan && !b.isCurrentPlan) return -1;
       if (!a.isCurrentPlan && b.isCurrentPlan) return 1;
 
-      if (a.badge == PlanBadge.upgrade && b.badge != PlanBadge.upgrade) return -1;
-      if (a.badge != PlanBadge.upgrade && b.badge == PlanBadge.upgrade) return 1;
+      if (a.badge == PlanBadge.upgrade && b.badge != PlanBadge.upgrade) {
+        return -1;
+      }
+      if (a.badge != PlanBadge.upgrade && b.badge == PlanBadge.upgrade) {
+        return 1;
+      }
 
-      if (a.badge == PlanBadge.downgrade && b.badge != PlanBadge.downgrade) return 1;
-      if (a.badge != PlanBadge.downgrade && b.badge == PlanBadge.downgrade) return -1;
+      if (a.badge == PlanBadge.downgrade && b.badge != PlanBadge.downgrade) {
+        return 1;
+      }
+      if (a.badge != PlanBadge.downgrade && b.badge == PlanBadge.downgrade) {
+        return -1;
+      }
 
       final tierComp = _compareTiers(b.tier, a.tier);
       if (tierComp != 0) return tierComp;

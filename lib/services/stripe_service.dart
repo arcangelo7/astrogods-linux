@@ -48,6 +48,7 @@ class StripeService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
           'Accept-Language': languageCode,
+          'X-Client-Version': Environment.appVersion,
         },
         body: json.encode({
           'price_id': priceId,
@@ -136,6 +137,7 @@ class StripeService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
           'Accept-Language': languageCode,
+          'X-Client-Version': Environment.appVersion,
         },
         body: json.encode({
           'price_id': priceId,
@@ -186,6 +188,7 @@ class StripeService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
           'Accept-Language': languageCode,
+          'X-Client-Version': Environment.appVersion,
         },
         body: json.encode({
           'customer_id': customerId,
@@ -243,6 +246,7 @@ class StripeService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
           'Accept-Language': languageCode,
+          'X-Client-Version': Environment.appVersion,
         },
         body: json.encode({
           'session_id': sessionId,

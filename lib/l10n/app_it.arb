@@ -933,6 +933,8 @@
   "releaseNotes": "Note di rilascio",
   "releaseNotesTitle": "Novità",
   "version": "Versione {version}",
+  "releaseNotes_4_7_7": "Risolti errori nel calcolo dei transiti mensili. I badge degli abbonamenti ora si mostrano solo quando appropriato.",
+  "releaseNotes_4_7_6": "Migliorato il rendering dei font.",
   "releaseNotes_4_7_1": "Messaggi di errore di connessione ora tradotti in italiano.",
   "releaseNotes_4_5_1": "Nuove icone dell'app. Migliorata la qualità del logo nel menu. Risolto un problema di validazione nella modifica del tema natale.",
   "releaseNotes_4_0_1": "Risolto un problema per cui il pulsante PDF non appariva dopo la generazione della lettura. I grafici salvati ora si aggiornano correttamente tornando indietro con il browser.",
@@ -949,5 +951,7 @@
   "releaseNotes_2_0_1": "Rilascio iniziale con letture del tema natale, analisi di sinastria per la compatibilità di coppia, e previsioni dei transiti giornalieri e mensili. Esportazione PDF. Supporto completo per inglese e italiano.",
   "updateRequired": "Un attimo!",
   "updateNow": "Aggiorna",
-  "errorMessageCopied": "Messaggio di errore copiato negli appunti"
+  "errorMessageCopied": "Messaggio di errore copiato negli appunti",
+  "portalReturnTitle": "Fatto",
+  "portalReturnMessage": "Puoi chiudere questa finestra e tornare all'app."
 }

@@ -5696,6 +5696,18 @@ abstract class AppLocalizations {
   /// **'Version {version}'**
   String version(Object version);
 
+  /// No description provided for @releaseNotes_4_7_7.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed errors in monthly transit calculations. Subscription badges now display only when appropriate.'**
+  String get releaseNotes_4_7_7;
+
+  /// No description provided for @releaseNotes_4_7_6.
+  ///
+  /// In en, this message translates to:
+  /// **'Improved font rendering.'**
+  String get releaseNotes_4_7_6;
+
   /// No description provided for @releaseNotes_4_7_1.
   ///
   /// In en, this message translates to:
@@ -5797,6 +5809,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error message copied to clipboard'**
   String get errorMessageCopied;
+
+  /// No description provided for @portalReturnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get portalReturnTitle;
+
+  /// No description provided for @portalReturnMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You can close this window and return to the app.'**
+  String get portalReturnMessage;
 }
 
 class _AppLocalizationsDelegate

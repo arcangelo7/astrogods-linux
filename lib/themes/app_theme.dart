@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../constants/text_styles.dart';
 import '../constants/colors.dart';
 
@@ -22,6 +23,13 @@ class AppTheme {
           color: scheme.onSurface,
           fontSize: AppTextStyles.bodyLargeSize,
           fontWeight: AppTextStyles.semibold,
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarIconBrightness: Brightness.light,
         ),
       ),
       drawerTheme: DrawerThemeData(
@@ -98,6 +106,13 @@ class AppTheme {
           color: scheme.onSurface,
           fontSize: AppTextStyles.bodyLargeSize,
           fontWeight: AppTextStyles.semibold,
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarIconBrightness: Brightness.dark,
         ),
       ),
       drawerTheme: DrawerThemeData(

@@ -457,10 +457,16 @@ class ApiClient {
     return await get('/subscription-status');
   }
 
-  Future<Map<String, dynamic>> createPortalSession({String? priceId}) async {
+  Future<Map<String, dynamic>> createPortalSession({
+    String? priceId,
+    String? returnUrl,
+  }) async {
     final body = <String, dynamic>{};
     if (priceId != null) {
       body['price_id'] = priceId;
+    }
+    if (returnUrl != null) {
+      body['return_url'] = returnUrl;
     }
     return await post('/create-portal-session', body: body);
   }

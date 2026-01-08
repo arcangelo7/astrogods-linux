@@ -13,6 +13,8 @@ class ReleaseNotesScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     final releases = [
+      _ReleaseInfo('4.7.7', l10n.releaseNotes_4_7_7),
+      _ReleaseInfo('4.7.6', l10n.releaseNotes_4_7_6),
       _ReleaseInfo('4.7.1', l10n.releaseNotes_4_7_1),
       _ReleaseInfo('4.5.1', l10n.releaseNotes_4_5_1),
       _ReleaseInfo('4.0.1', l10n.releaseNotes_4_0_1),

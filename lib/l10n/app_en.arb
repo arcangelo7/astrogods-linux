@@ -954,6 +954,8 @@
   "releaseNotes": "Release notes",
   "releaseNotesTitle": "What's new",
   "version": "Version {version}",
+  "releaseNotes_4_7_7": "Fixed errors in monthly transit calculations. Subscription badges now display only when appropriate.",
+  "releaseNotes_4_7_6": "Improved font rendering.",
   "releaseNotes_4_7_1": "Connection error messages now translated.",
   "releaseNotes_4_5_1": "New app icons. Improved logo quality in the menu. Fixed a validation issue when editing birth charts.",
   "releaseNotes_4_0_1": "Fixed an issue where the PDF button did not appear after reading generation. Saved charts now refresh correctly when navigating back with the browser.",
@@ -970,5 +972,7 @@
   "releaseNotes_2_0_1": "Initial release with birth chart readings, synastry analysis for couple compatibility, and daily and monthly transit predictions. PDF export. Full support for English and Italian.",
   "updateRequired": "Just a moment!",
   "updateNow": "Update",
-  "errorMessageCopied": "Error message copied to clipboard"
+  "errorMessageCopied": "Error message copied to clipboard",
+  "portalReturnTitle": "Done",
+  "portalReturnMessage": "You can close this window and return to the app."
 }

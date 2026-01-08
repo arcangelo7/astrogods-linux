@@ -5,6 +5,7 @@ import '../models/subscription.dart';
 import 'api_client.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../l10n/app_localizations.dart';
+import 'loopback_server.dart';
 
 class SubscriptionService {
   final ApiClient _apiClient;
@@ -25,33 +26,68 @@ class SubscriptionService {
 
   Future<void> openCustomerPortal({String? priceId}) async {
     try {
-      final response = await _apiClient.createPortalSession(priceId: priceId);
+      final isDesktop = !kIsWeb &&
+          (defaultTargetPlatform == TargetPlatform.linux ||
+              defaultTargetPlatform == TargetPlatform.windows ||
+              defaultTargetPlatform == TargetPlatform.macOS);
+
+      String? returnUrl;
+      LoopbackServer? server;
+
+      if (isDesktop && _context != null) {
+        final l10n = AppLocalizations.of(_context)!;
+        server = LoopbackServer(
+          title: l10n.portalReturnTitle,
+          message: l10n.portalReturnMessage,
+        );
+        returnUrl = await server.start();
+      }
+
+      final response = await _apiClient.createPortalSession(
+        priceId: priceId,
+        returnUrl: returnUrl,
+      );
       final url = response['url'] as String?;
 
       if (url == null || url.isEmpty) {
+        await server?.close();
         throw Exception('No portal URL received');
       }
 
       if (kIsWeb) {
-        // On web: open in new browser tab
         final uri = Uri.parse(url);
         if (await canLaunchUrl(uri)) {
           await launchUrl(uri, mode: LaunchMode.externalApplication);
         } else {
           throw Exception('Cannot open URL');
         }
+      } else if (isDesktop) {
+        await _openInBrowserWithLoopback(url, server!);
       } else {
-        // On mobile: open in WebView
         final context = _context;
         if (context == null || !context.mounted) {
           throw Exception('Context not available');
         }
-
         await _openInAppWebView(url, context);
       }
     } catch (e) {
       throw Exception('Failed to open customer portal: ${e.toString()}');
     }
+  }
+
+  Future<void> _openInBrowserWithLoopback(
+    String url,
+    LoopbackServer server,
+  ) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      await server.close();
+      throw Exception('Cannot open URL');
+    }
+
+    await server.waitForCallback();
   }
 
   Future<void> _openInAppWebView(String url, BuildContext context) async {

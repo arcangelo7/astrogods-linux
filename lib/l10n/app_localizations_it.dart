@@ -3240,6 +3240,13 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get releaseNotes_4_7_7 =>
+      'Risolti errori nel calcolo dei transiti mensili. I badge degli abbonamenti ora si mostrano solo quando appropriato.';
+
+  @override
+  String get releaseNotes_4_7_6 => 'Migliorato il rendering dei font.';
+
+  @override
   String get releaseNotes_4_7_1 =>
       'Messaggi di errore di connessione ora tradotti in italiano.';
 
@@ -3302,4 +3309,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get errorMessageCopied => 'Messaggio di errore copiato negli appunti';
+
+  @override
+  String get portalReturnTitle => 'Fatto';
+
+  @override
+  String get portalReturnMessage =>
+      'Puoi chiudere questa finestra e tornare all\'app.';
 }

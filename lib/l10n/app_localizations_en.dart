@@ -3211,6 +3211,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get releaseNotes_4_7_7 =>
+      'Fixed errors in monthly transit calculations. Subscription badges now display only when appropriate.';
+
+  @override
+  String get releaseNotes_4_7_6 => 'Improved font rendering.';
+
+  @override
   String get releaseNotes_4_7_1 => 'Connection error messages now translated.';
 
   @override
@@ -3269,4 +3276,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorMessageCopied => 'Error message copied to clipboard';
+
+  @override
+  String get portalReturnTitle => 'Done';
+
+  @override
+  String get portalReturnMessage =>
+      'You can close this window and return to the app.';
 }
