@@ -67,33 +67,33 @@
   </branding>
   <screenshots>
     <screenshot type="default">
-      <image xml:lang="en">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_reading_light_en.png</image>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_reading_light_en.png</image>
       <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_reading_light_it.png</image>
-      <caption xml:lang="en">Birth chart reading</caption>
+      <caption>Birth chart reading</caption>
       <caption xml:lang="it">Lettura del tema natale</caption>
     </screenshot>
     <screenshot>
-      <image xml:lang="en">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_reading_dark_en.png</image>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_reading_dark_en.png</image>
       <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_reading_dark_it.png</image>
-      <caption xml:lang="en">Birth chart reading in dark mode</caption>
+      <caption>Birth chart reading in dark mode</caption>
       <caption xml:lang="it">Lettura del tema natale in modalita scura</caption>
     </screenshot>
     <screenshot>
-      <image xml:lang="en">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_zoom_light_en.png</image>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_zoom_light_en.png</image>
       <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_zoom_light_it.png</image>
-      <caption xml:lang="en">Birth chart</caption>
+      <caption>Birth chart</caption>
       <caption xml:lang="it">Grafico del tema natale</caption>
     </screenshot>
     <screenshot>
-      <image xml:lang="en">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_details_light_en.png</image>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_details_light_en.png</image>
       <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/birth_chart_details_light_it.png</image>
-      <caption xml:lang="en">Aspect chart</caption>
+      <caption>Aspect chart</caption>
       <caption xml:lang="it">Grafico degli aspetti</caption>
     </screenshot>
     <screenshot>
-      <image xml:lang="en">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/settings_light_en.png</image>
+      <image>https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/settings_light_en.png</image>
       <image xml:lang="it">https://raw.githubusercontent.com/arcangelo7/astrogods-app/main/branding/screenshots/flathub/optimized/settings_light_it.png</image>
-      <caption xml:lang="en">App settings</caption>
+      <caption>App settings</caption>
       <caption xml:lang="it">Impostazioni</caption>
     </screenshot>
   </screenshots>
