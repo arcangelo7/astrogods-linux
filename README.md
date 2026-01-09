@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="branding/logos/circular/astrogods_logo_256.png" alt="AstroGods Logo" width="128" />
+</p>
+
 # AstroGods
 
 [![PWA](https://img.shields.io/badge/PWA-Install-5A0FC8?logo=pwa&logoColor=white)](https://astrogods.it)
