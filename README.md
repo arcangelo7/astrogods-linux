@@ -7,6 +7,7 @@
 [![PWA](https://img.shields.io/badge/PWA-Install-5A0FC8?logo=pwa&logoColor=white)](https://astrogods.it)
 [![Flathub](https://img.shields.io/flathub/v/it.astrogods.AstroGods?logo=flathub&logoColor=white)](https://flathub.org/apps/it.astrogods.AstroGods)
 [![Snap](https://snapcraft.io/astrogods/badge.svg)](https://snapcraft.io/astrogods)
+[![Microsoft Store](https://img.shields.io/badge/Microsoft_Store-Install-0078D4?logo=microsoft&logoColor=white)](https://apps.microsoft.com/detail/9mttm2qdm94v)
 
 Open source Flutter frontend for [AstroGods](https://astrogods.it).
 
@@ -25,9 +26,9 @@ https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 
 ## Installation
 
-This repository contains the source code and Flatpak configuration for AstroGods. The official Flathub manifest is maintained at [flathub/it.astrogods.AstroGods](https://github.com/flathub/it.astrogods.AstroGods). Since this is a Flutter project, the source code can theoretically be compiled for other platforms (Android, iOS, macOS, Windows, Web).
+### Linux
 
-### Flatpak
+#### Flatpak
 
 <a href="https://flathub.org/apps/it.astrogods.AstroGods">
   <img src="https://flathub.org/api/badge?svg&locale=en" alt="Download on Flathub" />
@@ -37,7 +38,7 @@ This repository contains the source code and Flatpak configuration for AstroGods
 flatpak install flathub it.astrogods.AstroGods
 ```
 
-### Snap
+#### Snap
 
 <a href="https://snapcraft.io/astrogods">
   <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" />
@@ -46,6 +47,12 @@ flatpak install flathub it.astrogods.AstroGods
 ```bash
 snap install astrogods
 ```
+
+### Windows
+
+<a href="https://apps.microsoft.com/detail/9mttm2qdm94v">
+  <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Download from Microsoft Store" width="200" />
+</a>
 
 ## License
 
