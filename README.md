@@ -31,7 +31,7 @@ https://github.com/user-attachments/assets/27aaa5fc-46b9-4fa5-90dc-c4479c725b5e
 #### Flatpak
 
 <a href="https://flathub.org/apps/it.astrogods.AstroGods">
-  <img src="https://flathub.org/api/badge?svg&locale=en" alt="Download on Flathub" />
+  <img src="https://flathub.org/api/badge?svg&locale=en" alt="Download on Flathub" height="56" />
 </a>
 
 ```bash
@@ -41,7 +41,7 @@ flatpak install flathub it.astrogods.AstroGods
 #### Snap
 
 <a href="https://snapcraft.io/astrogods">
-  <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" />
+  <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" height="56" />
 </a>
 
 ```bash
@@ -51,7 +51,7 @@ snap install astrogods
 ### Windows
 
 <a href="https://apps.microsoft.com/detail/9mttm2qdm94v">
-  <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Download from Microsoft Store" width="200" />
+  <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Download from Microsoft Store" height="56" />
 </a>
 
 ## License
