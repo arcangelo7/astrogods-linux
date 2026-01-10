@@ -3409,7 +3409,7 @@
     },
     {
         "type": "patch",
-        "path": "printing/5.14.2-CMakeLists.txt.patch",
+        "path": "generated/patches/printing/5.14.2-CMakeLists.txt.patch",
         "dest": ".pub-cache/hosted/pub.dev/printing-5.14.2"
     }
 ]
